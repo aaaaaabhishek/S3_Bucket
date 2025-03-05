@@ -118,7 +118,7 @@ export default OnePageLayout;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Project</title>
-    <link rel="icon" href="https://modussystems.com/images/Modus-logo.png" /> <!-- Replace with your actual logo URL -->
+    <link rel="icon" href="https://ems.com/images/Modus-logo.png" /> <!-- Replace with your actual logo URL -->
 </head>
 <body>
     <div id="root"></div>
