@@ -85,7 +85,7 @@ const OnePageLayout = () => {
     {/* Left-Side Logo */}
     <NavbarBrand href="#" className="d-flex align-items-center">
       <img
-        src="https://modussystems.com/images/Modus-logo.png"
+        src="https://moussystems.com/images/Modus-logo.png"
         alt="Logo"
         style={{ width: "100px", height: "30px" }}
       />
