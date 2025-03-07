@@ -1,126 +1,101 @@
 import React, { useState } from "react";
 import {
-  Navbar,
-  NavbarBrand,
-  NavbarToggler,
-  Collapse,
-  Nav,
-  NavItem,
-  NavLink,
   Container,
+  Row,
+  Col,
+  Card,
+  CardBody,
+  Form,
+  FormGroup,
+  Label,
+  Input,
   Button
 } from "reactstrap";
-import { Menu, X, ChevronDown, ChevronUp } from "lucide-react";
+const LoginPage = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-const OnePageLayout = () => {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [selectedRole, setSelectedRole] = useState("Welcome");
-  const [showStudentOptions, setShowStudentOptions] = useState(false);
-  const [showTeacherOptions, setShowTeacherOptions] = useState(false);
-
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Login attempted with:", { email, password });
+  };
 
   return (
-    <div
-      className="vh-100 d-flex"
-      style={{
-        backgroundImage: "url('https://source.unsplash.com/1600x900/?sky,blue')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
-    >
-      {/* Sidebar */}
-      <div className="d-flex flex-column p-4 bg-dark text-white shadow-lgd-flex flex-column align-items-center justify-content-center" style={{ width: "250px", minHeight: "100vh" }}>
-        <h4 className="mb-4"></h4>
-        
-        {/* Student Button */}
-        <Button
-          color="primary"
-          className="mb-3 d-flex justify-content-between align-items-center"
-          onClick={() => setShowStudentOptions(!showStudentOptions)}
-          style={{ fontSize: "1.25rem", width: "100%" }}
-
-        >
-          Student {showStudentOptions ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
-        </Button>
-
-        {/* Sub-options for Student */}
-        {showStudentOptions && (
-          <div className="ps-3">
-            <Button color="light" className="mb-2 w-100 text-start" onClick={() => setSelectedRole("Add Student")}>
-              ➕ Add Student
-            </Button>
-            <Button color="danger" className="w-100 text-start" onClick={() => setSelectedRole("Delete Student")}>
-              ❌ Delete Student
-            </Button>
-          </div>
-        )}
-
-         <Button
-          color="primary"
-          className="mb-3 d-flex justify-content-between align-items-center"
-          onClick={() => setShowTeacherOptions(!showTeacherOptions)}
-          style={{ fontSize: "1.25rem", width: "100%" }}
-
-        >
-          Teacher {showTeacherOptions ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
-        </Button>
-        {showTeacherOptions && (
-          <div className="ps-3">
-            <Button color="light" className="mb-2 w-100 text-start" onClick={() => setSelectedRole("Add Teacher")}>
-              ➕ Add Teacher
-            </Button>
-            <Button color="danger" className="w-100 text-start" onClick={() => setSelectedRole("Delete Teacher")}>
-              ❌ Delete Teacher
-            </Button>
-          </div>
-        )}
-        
+    <div style={{ 
+      backgroundColor: "#0a1931", 
+      minHeight: "100vh", 
+      display: "flex", 
+      justifyContent: "space-between", 
+      alignItems: "center", 
+      padding: "20px" 
+    }}>
+      {/* Logo on the Left Side */}
+      <div style={{ marginLeft: "40px" ,marginTop:"100px"}}>
+        <img 
+          src="https://.com/images/modus-logo-white.png" 
+          alt="Logo" 
+          style={{ maxWidth: "450px" }} 
+        />
       </div>
-
-      {/* Main Content */}
-      <div className="flex-grow-1">
-        {/* Navbar */}
-        <Navbar expand="md" className="bg-dark bg-opacity-50 fixed-top shadow-sm">
-  <Container className="d-flex justify-content-between">
-    {/* Left-Side Logo */}
-    <NavbarBrand href="#" className="d-flex align-items-center">
-      <img
-        src="https://moussystems.com/images/Modus-logo.png"
-        alt="Logo"
-        style={{ width: "100px", height: "30px" }}
-      />
-    </NavbarBrand>
-
-    {/* Menu Toggler (Always on Right) */}
-    <NavbarToggler onClick={() => setMenuOpen(!menuOpen)} className="ms-auto">
-      {menuOpen ? <X size={30} className="text-white" /> : <Menu size={30} className="text-white" />}
-    </NavbarToggler>
-
-    <Collapse isOpen={menuOpen} navbar>
-      <Nav className="ms-auto">
-        <NavItem><NavLink href="#" className="text-white">Home</NavLink></NavItem>
-        <NavItem><NavLink href="#" className="text-white">About</NavLink></NavItem>
-        <NavItem><NavLink href="#" className="text-white">Services</NavLink></NavItem>
-        <NavItem><NavLink href="#" className="text-white">Contact</NavLink></NavItem>
-      </Nav>
-    </Collapse>
-  </Container>
-</Navbar>        
-      </div>
+      
+      <Container fluid>
+        <Row className="justify-content-end">
+          <Col xs={12} sm={8} md={6} lg={5} xl={4} className="d-flex justify-content-end">
+            <Card 
+              className="shadow-lg p-4 rounded border-0" 
+              style={{ 
+                background: "linear-gradient(135deg, #ffffff 10%, #e3f2fd 90%)", 
+                width: "90%", 
+                maxWidth: "350px", 
+                borderRadius: "20px", 
+                boxShadow: "0px 8px 20px rgba(0, 0, 0, 0.4)", 
+                transition: "transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out",
+                padding: "30px"
+              }}
+            >
+              <CardBody>
+                <h2 className="text-center mb-4" style={{ color: "#003580", fontWeight: "bold", fontSize: "28px", textTransform: "uppercase", letterSpacing: "2px" }}>Welcome Back</h2>
+                <Form onSubmit={handleSubmit}>
+                  <FormGroup>
+                    <Label for="email" className="font-weight-bold" style={{ fontSize: "16px", color: "#333" }}>Email</Label>
+                    <Input
+                      type="email"
+                      id="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      required
+                      className="p-2 rounded border-primary"
+                      style={{ fontSize: "14px", backgroundColor: "#eef2f7", border: "2px solid #0056b3" }}
+                    />
+                  </FormGroup>
+                  <FormGroup>
+                    <Label for="password" className="font-weight-bold" style={{ fontSize: "16px", color: "#333" }}>Password</Label>
+                    <Input
+                      type="password"
+                      id="password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      required
+                      className="p-2 rounded border-primary"
+                      style={{ fontSize: "14px", backgroundColor: "#eef2f7", border: "2px solid #0056b3" }}
+                    />
+                  </FormGroup>
+                  <Button 
+                    color="primary" 
+                    block 
+                    className="mt-3 py-2 font-weight-bold shadow-sm rounded"
+                    style={{ fontSize: "18px", backgroundColor: "#0056b3", border: "none", letterSpacing: "1.5px", textTransform: "uppercase", transition: "background 0.3s ease-in-out, transform 0.2s ease-in-out" }}
+                  >
+                    Login
+                  </Button>
+                </Form>
+              </CardBody>
+            </Card>
+          </Col>
+        </Row>
+      </Container>
     </div>
   );
 };
 
-export default OnePageLayout;
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Project</title>
-    <link rel="icon" href="https://ems.com/images/Modus-logo.png" /> <!-- Replace with your actual logo URL -->
-</head>
-<body>
-    <div id="root"></div>
-</body>
-</html>
+export default LoginPage;
